@@ -6,7 +6,10 @@ const API = 'https://hacker-news.firebaseio.com'
 const asJson = r => r.json()
 
 export default class Contaienr extends Component {
-  state = { items: [] }
+  state = {
+    items: [],
+    loading: true
+  }
 
   // React way to load when client is ready
   componentDidMount() {
@@ -14,7 +17,7 @@ export default class Contaienr extends Component {
     this.loadNews()
   }
 
-  // https://stackoverflow.com/a/12646864/3483685
+  // Shuffle array: https://stackoverflow.com/a/12646864/3483685
   shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
@@ -35,18 +38,34 @@ export default class Contaienr extends Component {
       ))
       .then((items) => {
           items = items.sort( (a, b) => b.score - a.score ) // Sort score
-          this.setState({ items }) // React/Preact way to set it to state
+          this.setState({ items }) // React/Preact way to set state
+          return items
+        }
+      )
+      .then(items => Promise.all(
+        items.map(
+          item => fetch(`${API}/v0/user/${item.by}.json`).then(asJson)
+        )
+      ))
+      .then((users) => {
+          let items = this.state.items.map(item => {
+            return Object.assign(item, users.find(user => {
+              return user && item.by === user.id
+            }))
+          })
+          this.setState({ items, loading: false }) // Overwrite old items with new updated
         }
       )
   }
 
-  render({ }, { items }) {
+  render({ }, { items, loading }) {
     return (
       <div className="page page__home">
         <Container>
           <ul>
+            { loading && <li>LOADING</li>}
             { items.map( (item, i) => (
-              <li ke={i}><b>{item.score}</b>, {item.title}</li>
+              <li ke={i}><b>{item.score}</b>, {item.title} // by {item.by} (karma: {item.karma})</li>
             )) }
           </ul>
         </Container>
