@@ -11,15 +11,9 @@ export default function () {
       </div>
 
       <nav class='Navbar-nav'>
-        <input class='Navbar-input u-hide' type='checkbox' id='Navbar-menu' />
-        <label for='Navbar-menu' class='Navbar-burger'>
-          <span></span>
-          <span class='u-visuallyHidden'>Menu</span>
-        </label>
         <ul class='Navbar-list'>
-          <li class='Navbar-item'><Link href='/'>Front</Link></li>
-          <li class='Navbar-item'><Link href='/work'>Work</Link></li>
-          <li class='Navbar-item'><Link href='/hire'>Hire</Link></li>
+          <li class='Navbar-item'><Link href='/'>News</Link></li>
+          <li class='Navbar-item'><Link href='/about'>About</Link></li>
         </ul>
       </nav>
     </header>
