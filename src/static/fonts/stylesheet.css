@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'nowaybold';
+  src: url('noway-bold-webfont.woff2') format('woff2'),
+       url('noway-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nowaylight';
+  src: url('noway-light-webfont.woff2') format('woff2'),
+       url('noway-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nowaymedium';
+  src: url('noway-medium-webfont.woff2') format('woff2'),
+       url('noway-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nowayregular';
+  src: url('noway-regular-webfont.woff2') format('woff2'),
+       url('noway-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'nowaythin';
+  src: url('noway-thin-webfont.woff2') format('woff2'),
+       url('noway-thin-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

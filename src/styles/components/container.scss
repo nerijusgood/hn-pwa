@@ -1,0 +1,13 @@
+/* Container
+----------------------------------------------------------------------------- */
+.Container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1180px;
+  padding: 0 20px;
+  margin: 0 auto;
+
+  @media screen and (min-width: $md) {
+    // height: $navbarHeight;
+  }
+}
