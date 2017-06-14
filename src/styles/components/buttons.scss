@@ -1,0 +1,30 @@
+/* News
+----------------------------------------------------------------------------- */
+.button {
+  align-self: center;
+  padding: 16px 80px 16px 80px;
+  color: white;
+  font-family: arial;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  background: rgb(255, 85, 85);
+  transition: all 0.1s ease-in-out;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #E03A3A;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $colorLightGray;
+
+    &:hover {
+      background: $colorLightGray;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+/* News
+----------------------------------------------------------------------------- */
+.header {
+  text-align: center;
+  border: 6px solid $colorWhite;
+  color: $colorWhite;
+  display: inline;
+}
+
+.news {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+
+.news-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.news-score {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 80px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: $colorWhite;
+  padding: 8px 0;
+  border-bottom: 1px solid #255a69;
+}
+
+.news-content {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-basis: calc(100% - 80px);
+  background-color: $colorWhite;
+  padding: 8px;
+  border-bottom: 1px solid #f2f2f2;
+  text-decoration: none;
+
+  span:nth-child(1) {
+    font-size: 18px;
+    color: $colorGray;
+  }
+
+  span:nth-child(2) {
+    font-size: 14px;
+    color: $colorRed;
+    font-weight: 600;
+  }
+}
+
+.news-karma {
+  position: absolute;
+  top: 0;
+  right: -65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 16px);
+  width: calc(65px - 16px);
+  padding: 8px;
+  background-color: #ff0041;
+  color: $colorWhite;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  transition: right 0.5s ease;
+
+  &:after {
+    content: 'KARMA';
+    position: absolute;
+    font-size: 24px;
+    font-weight: 600;
+    opacity: 0.38;
+    left: -10px;
+    top: 9px;
+    transform: rotate(30deg);
+  }
+}
+
+.news-item:hover {
+  .news-karma {
+    right: 0;
+  }
+}

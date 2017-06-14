@@ -7,13 +7,14 @@ const asJson = r => r.json()
 
 export default class Contaienr extends Component {
   state = {
+    tempItems: [],
     items: [],
     loading: true
   }
 
   // React way to load when client is ready
   componentDidMount() {
-    console.log('Bonjour Zmags')
+    console.log('Howdy Zmags')
     this.loadNews()
   }
 
@@ -29,6 +30,8 @@ export default class Contaienr extends Component {
   }
 
   loadNews() {
+    this.setState({ loading: true, items: [] })
+
     fetch(`${API}/v0/topstories.json`)
       .then(asJson)
       .then(items => Promise.all(
@@ -38,7 +41,7 @@ export default class Contaienr extends Component {
       ))
       .then((items) => {
           items = items.sort( (a, b) => b.score - a.score ) // Sort score
-          this.setState({ items }) // React/Preact way to set state
+          this.setState({ tempItems: items }) // React/Preact way to set state
           return items
         }
       )
@@ -48,7 +51,7 @@ export default class Contaienr extends Component {
         )
       ))
       .then((users) => {
-          let items = this.state.items.map(item => {
+          let items = this.state.tempItems.map(item => {
             return Object.assign(item, users.find(user => {
               return user && item.by === user.id
             }))
@@ -60,12 +63,25 @@ export default class Contaienr extends Component {
 
   render({ }, { items, loading }) {
     return (
-      <div className="page page__home">
+      <div className='page page-home'>
         <Container>
-          <ul>
-            { loading && <li>LOADING</li>}
+          <h1 class='header'>Hacker News</h1>
+          <button class='button' disabled={loading} onClick={this.loadNews.bind(this)}>Reload</button>
+          { loading && <div class='loader'>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>}
+          <ul class='news'>
             { items.map( (item, i) => (
-              <li ke={i}><b>{item.score}</b>, {item.title} // by {item.by} (karma: {item.karma})</li>
+              <li class='news-item' key={i}>
+                  <div class='news-score'>{item.score}</div>
+                  <a class='news-content' href={item.url} target='_blank'>
+                    <span>{item.title}</span>
+                    <span>by {item.by}</span>
+                    <div class='news-karma'>{item.karma}</div>
+                  </a>
+              </li>
             )) }
           </ul>
         </Container>
